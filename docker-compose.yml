@@ -1,0 +1,9 @@
+version: "3.1"
+
+services:
+  function:
+    build: ./
+    container_name: cruzhacks_hackers_announcements_service
+    env_file: .env
+    ports:
+      - "7071:80"
