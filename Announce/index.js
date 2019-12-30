@@ -1,9 +1,5 @@
 const { authenticateApiKey } = require("../shared/middleware/authentication");
-const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
-
-const adapter = new FileSync("announcements.json");
-const announcements = low(adapter);
+const { announcements } = require("./db");
 
 module.exports = async function(context, req) {
   const isAuthenticated = authenticateApiKey(context, req);
@@ -19,6 +15,4 @@ module.exports = async function(context, req) {
     };
     context.done();
   }
-
-  announcements.defaults({ posts: [] }).write();
 };
