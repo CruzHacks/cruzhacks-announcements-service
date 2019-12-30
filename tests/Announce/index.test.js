@@ -45,5 +45,18 @@ describe("[Announce] Unit tests for function driver, index.js", () => {
       await httpFunction(context, request);
       expect(context.res.body).toEqual(mockResBody);
     });
+    test("should return JSON content type from authenticated GET", async () => {
+      const request = {
+        method: "GET",
+      };
+      const mockResHeader = {
+        "Content-Type": "application/json",
+      };
+
+      authenticateApiKey.mockImplementationOnce(() => true);
+
+      await httpFunction(context, request);
+      expect(context.res.headers).toEqual(mockResHeader);
+    });
   });
 });
