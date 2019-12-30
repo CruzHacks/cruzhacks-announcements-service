@@ -15,4 +15,17 @@ module.exports = async function(context, req) {
     };
     context.done();
   }
+
+  if (req.method === "GET") {
+    let announcementList = announcements.getState();
+    context.res = {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        announcementList,
+      },
+    };
+  }
 };

@@ -9,7 +9,6 @@ module.exports = {
       functionContext.log.error("ERROR: UNSET API KEY ENV VAR");
       return false;
     }
-    if (requestKey !== correctKey) context.log("Unauthorized request from " + requestObject.headers.host);
     return requestKey === correctKey;
   },
 };
