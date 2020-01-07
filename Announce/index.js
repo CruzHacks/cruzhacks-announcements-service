@@ -5,27 +5,34 @@ module.exports = async function(context, req) {
   const isAuthenticated = authenticateApiKey(context, req);
 
   if (isAuthenticated === false) {
-    context.res = {
-      status: 401,
-      body: {
-        error: true,
-        status: 401,
-        message: "Unable to authenticate request.",
-      },
-    };
+    jsonResponse = {
+	  status: 401,
+	  body: {
+		  error: true,
+		  status: 401,
+		  message: "Unable to authenticate request.",
+		},
+	 };
+	context.log.error(JSON.stringify(jsonResponse, null, 2));
+	context.res = jsonResponse;
     context.done();
   }
 
   if (req.method === "GET") {
     let announcementList = announcements.getState();
-    context.res = {
+    jsonResponse = {
       status: 200,
       headers: {
         "Content-Type": "application/json",
       },
       body: {
-        announcementList,
+		  error: false,
+		  status: 200
+		  announcement: announcementList,
       },
     };
+	context.log(JSON.stringify(jsonResponse, null, 2));
+	context.res = jsonResponse;
+	context.done();
   }
 };

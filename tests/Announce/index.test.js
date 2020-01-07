@@ -37,7 +37,9 @@ describe("[Announce] Unit tests for function driver, index.js", () => {
 
       let announcementList = announcements.getState();
       const mockResBody = {
-        announcementList,
+        error: false,
+		status: 200
+		announcement: announcementList,
       };
 
       authenticateApiKey.mockImplementationOnce(() => true);
