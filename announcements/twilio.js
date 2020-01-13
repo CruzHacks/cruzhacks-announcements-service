@@ -12,9 +12,9 @@ const knex = require('knex')({
 */
 
 const twilioConfig = {
-    accSid: `AC2a169cef76f51004f1b67066172a746f`,
-    authTok: `3567e9d9790528b42252cd3e642a33cd`,
-    phoneNum: '+16193892265',
+    accSid: `${process.env.TWILIO_ACCOUNT_SID}`,
+    authTok: `${process.env.TWILIO_AUTH_TOKEN}`,
+    phoneNum: `${process.env.TWILIO_PHONE_NUMBER}`,
 };
 
 // initializing twilio client
@@ -37,7 +37,7 @@ const sendAnnouncement = (functionContext, message) => {
 
     return twilioClient.messages.create({
         from: twilioConfig.phoneNum,
-        to: '7142606051',
+        to: 'test number',
         body: message
     }).then(response => {
         console.log(response);
