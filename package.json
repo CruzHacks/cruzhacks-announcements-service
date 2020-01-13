@@ -1,0 +1,16 @@
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "scripts": {
+    "test": "echo \"No tests yet...\""
+  },
+  "author": "",
+  "dependencies": {
+    "axios": "^0.19.1",
+    "dotenv": "^8.2.0",
+    "knex": "^0.20.7",
+    "pg": "^7.17.1",
+    "twilio": "^3.39.2"
+  }
+}
