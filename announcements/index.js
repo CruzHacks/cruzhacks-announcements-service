@@ -1,7 +1,7 @@
 const { sendAnnouncement } = require("./twilio");
 
 module.exports = async function(context, req) {
-    return sendAnnouncement(context, "Hello World")
+    return sendAnnouncement(context, req.body.message)
         .then(() => {
             return {
                 status: 200,
@@ -13,7 +13,6 @@ module.exports = async function(context, req) {
             };
         })
         .catch(err => {
-            console.log("line 16");
             return {
                 status: 500,
                 body: {
