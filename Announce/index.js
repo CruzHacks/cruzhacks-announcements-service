@@ -27,7 +27,7 @@ module.exports = async function(context, req) {
       },
       body: {
 		  error: false,
-		  status: 200
+		  status: 200,
 		  announcement: announcementList,
       },
     };
