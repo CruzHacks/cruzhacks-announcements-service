@@ -2,6 +2,10 @@
   "IsEncrypted": false,
   "Values": {
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": "{AzureWebJobsStorage}"
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}",
+    "TWILIO_ACCOUNT_SID": "AC2a169cef76f51004f1b67066172a746f",
+    "TWILIO_AUTH_TOKEN": "3567e9d9790528b42252cd3e642a33cd",
+    "TWILIO_PHONE_NUMBER": "+16193892265",
+    "API_KEY": "123ABC"
   }
 }
