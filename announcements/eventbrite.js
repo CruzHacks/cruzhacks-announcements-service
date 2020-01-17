@@ -15,14 +15,7 @@ const eventBriteConfiguration = {
     endpoint: `${process.env.EVENTBRITE_ATTENDEE_ENDPOINT}`
 }
 
-const requestConfiguration = {
-    headers: 
-    { 
-        "Authorization": `Bearer ${process.env.EVENTBRITE_BEARER_TOK}`
-    }
-}
-
-const getAllAttendees = async (functionContext) => {
+const getAllAttendeesEmailEventBrite = async (functionContext) => {
     
     let numOfPages = 0;
     let pageSize = 0;
@@ -51,8 +44,6 @@ const getAllAttendees = async (functionContext) => {
 
     for (let i = 1; i < numOfPages; i++) {
 
-        console.log(i);
-
         // last continuation page doesnt contain continuation url
         const continuationURL = results.data.pagination.continuation;
 
@@ -64,19 +55,16 @@ const getAllAttendees = async (functionContext) => {
         }
 
         pageSize = results.data.pagination.page_size;
-
-        // console.log(pageSize);
         
         for (let i = 0 ; i < pageSize; i++) {
-            if (results.data.attendees[i].profile !== undefined) {
-                attendeesProfile.push(results.data.attendees[i].profile);
+            if (results.data.attendees[i] !== undefined) {
+                attendeesProfile.push(results.data.attendees[i].profile.email);
             }
         }
-    
     }
-
+    return attendeesProfile;
 }
 
 module.exports = { 
-    getAllAttendees,
+    getAllAttendeesEmailEventBrite,
 }
