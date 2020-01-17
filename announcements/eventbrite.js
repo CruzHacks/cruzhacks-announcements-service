@@ -51,6 +51,8 @@ const getAllAttendees = async (functionContext) => {
 
     for (let i = 1; i < numOfPages; i++) {
 
+        console.log(i);
+
         // last continuation page doesnt contain continuation url
         const continuationURL = results.data.pagination.continuation;
 
