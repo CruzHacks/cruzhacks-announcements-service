@@ -6,6 +6,12 @@
     "TWILIO_ACCOUNT_SID": "AC2a169cef76f51004f1b67066172a746f",
     "TWILIO_AUTH_TOKEN": "3567e9d9790528b42252cd3e642a33cd",
     "TWILIO_PHONE_NUMBER": "+16193892265",
-    "API_KEY": "123ABC"
+    "API_KEY": "123ABC",
+    "DATABASE_HOST": "localhost",
+    "DATABASE_USER": "joseph",
+    "DATABASE_PASSWORD": "joseph",
+    "DATABASE_NAME": "cruzhacks-2020",
+    "EVENTBRITE_ATTENDEE_ENDPOINT": "https://www.eventbriteapi.com/v3/events/88529023693/attendees/",
+    "EVENTBRITE_BEARER_TOK": "GMYTKFW65CSBEUDR272T"
   }
 }
