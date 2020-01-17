@@ -2,6 +2,8 @@
 announcements.json
 host.json
 
+local.settings.json
+
 # Logs
 logs
 *.log
