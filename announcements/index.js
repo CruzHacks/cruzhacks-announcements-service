@@ -32,7 +32,7 @@ module.exports = async function(context, req) {
     else if (req.method === "POST") {
 
         const passwordAuthentication = authenticatePassword(context, req);
-        const parseRequestBody = parseRequestBody(context, req);
+        const isValidBody = parseRequestBody(context, req);
         
         if (!passwordAuthentication) {
             return {
@@ -44,7 +44,7 @@ module.exports = async function(context, req) {
                 }
             }
         }
-        if (!parseRequestBody) {
+        if (!isValidBody) {
             return {
                 status: 400,
                 body: {

@@ -41,5 +41,5 @@ const parseRequestBody = (functionContext, requestObject ) => {
 module.exports = {
     authenticateApiKey,
     authenticatePassword,
-    parseRequestBody,
+    parseRequestBody
 }
