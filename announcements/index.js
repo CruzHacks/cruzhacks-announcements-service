@@ -1,12 +1,11 @@
 const { authenticateApiKey, authenticatePassword, parseRequestBody } = require("./middleware");
-const { getAllAttendees } = require("./eventbrite");
+// const { getAllAttendeesEmailEventBrite } = require("./eventbrite");
 const { sendAnnouncement } = require("./twilio");
+const { insertAnnouncement, getAllAnnouncement } = require("./database");
 
 module.exports = async function(context, req) {
 
     const isAuthenticated = authenticateApiKey(context, req);
-
-    getAllAttendees(context);
 
     if (!isAuthenticated) {
         return {
@@ -20,13 +19,21 @@ module.exports = async function(context, req) {
     };
 
     if (req.method === "GET") {
-
+        const announcementResults = await getAllAnnouncement();
+        return {
+            status: 200,
+            body: {
+                error: false,
+                status: 200,
+                data: announcementResults,
+            },
+        }
     }
     else if (req.method === "POST") {
 
-        //const passwordAuthentication = authenticatePassword(context, req);
-        // const parseRequestBody = parseRequestBody(context, req);
-        /*
+        const passwordAuthentication = authenticatePassword(context, req);
+        const parseRequestBody = parseRequestBody(context, req);
+        
         if (!passwordAuthentication) {
             return {
                 status: 403,
@@ -37,8 +44,6 @@ module.exports = async function(context, req) {
                 }
             }
         }
-        */
-        /*
         if (!parseRequestBody) {
             return {
                 status: 400,
@@ -48,21 +53,21 @@ module.exports = async function(context, req) {
                     message: "Incorrect request body.",
                 }
             }
-        }
-        */
-        
-        // 
+        } 
         if (req.body.twilio) {
+            const isInserted = insertAnnouncement(req.body.announcement);
             return sendAnnouncement(context, req.body.announcement)
             .then((val) => {
-                return {
-                    status: 200,
-                    body: {
-                        error: false,
+                if (isInserted) {
+                    return {
                         status: 200,
-                        message: `Messages sent succesfully: ${val.sentNumberCount}, Messages not sent succesfully: ${val.unsentNumberCount}`,
-                    },
-                };
+                        body: {
+                            error: false,
+                            status: 200,
+                            message: `Announcement saved into database. Messages sent succesfully: ${val.sentNumberCount}, Messages not sent succesfully: ${val.unsentNumberCount}`,
+                        },
+                    };
+                }
             })
             .catch(err => {
                 return {
@@ -74,6 +79,29 @@ module.exports = async function(context, req) {
                     },
                 };
             });
+        }
+        else {
+            const isInserted = insertAnnouncement(req.body.announcement);
+            if (isInserted) {
+                return {
+                    status: 200,
+                    body: {
+                        error: false,
+                        status: 200,
+                        message: `Announcement saved into database.`,
+                    }
+                }
+            }
+            else {
+                return {
+                    status: 500,
+                    body: {
+                        error: true,
+                        status: 500,
+                        message: `Annoucement unable to be saved into database.`,
+                    }
+                }
+            }
         }
     }
 };
