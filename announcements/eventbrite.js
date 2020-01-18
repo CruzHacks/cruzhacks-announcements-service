@@ -40,8 +40,6 @@ const getAllAttendeesEmailEventBrite = async (functionContext) => {
         attendeesProfile.push(results.data.attendees[i].profile);
     }
 
-    // console.log(attendeesProfile);
-
     for (let i = 1; i < numOfPages; i++) {
 
         // last continuation page doesnt contain continuation url
@@ -58,20 +56,13 @@ const getAllAttendeesEmailEventBrite = async (functionContext) => {
         
         for (let i = 0 ; i < pageSize; i++) {
             if (results.data.attendees[i] !== undefined) {
-
                 if (results.data.attendees[i].profile.email.email === undefined) {
-                    // console.log(results.data.attendees[i].profile.email);
                     attendeesProfile.push(results.data.attendees[i].profile.email);
                 }
                 attendeesProfile.push(results.data.attendees[i].profile.email);
             }
         }
     }
-    /*
-    for (let i = 0; i < attendeesProfile.length; i++) {
-        console.log(attendeesProfile[i]);
-    }
-    */
     return attendeesProfile;
 }
 
