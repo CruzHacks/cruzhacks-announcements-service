@@ -55,7 +55,7 @@ const sendAnnouncement = async (functionContext, message) => {
     // 176
     for (let i = 0; i < 177; i++) {
         try { 
-            sendMessageToTwilio(message, nonDuplicatedPhoneNumbers[i], twilioConfig.phoneNum);
+            await sendMessageToTwilio(message, nonDuplicatedPhoneNumbers[i], twilioConfig.phoneNum);
         }
         catch (ex) {
             console.log(ex);
@@ -64,7 +64,7 @@ const sendAnnouncement = async (functionContext, message) => {
     // 176
     for (let i = 177; i < 353; i++) {
         try { 
-            sendMessageToTwilio(message, nonDuplicatedPhoneNumbers[i], twilioConfig.phoneNum1);
+            await sendMessageToTwilio(message, nonDuplicatedPhoneNumbers[i], twilioConfig.phoneNum1);
         }
         catch (ex) {
             console.log(ex);
@@ -73,7 +73,7 @@ const sendAnnouncement = async (functionContext, message) => {
     //175
     for (let i = 353; i < 528; i++) {
         try { 
-            sendMessageToTwilio(message, nonDuplicatedPhoneNumbers[i], twilioConfig.phoneNum2);
+            await sendMessageToTwilio(message, nonDuplicatedPhoneNumbers[i], twilioConfig.phoneNum2);
         }
         catch (ex) {
             console.log(ex);
