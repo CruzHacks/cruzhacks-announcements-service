@@ -55,8 +55,7 @@ module.exports = async function(context, req) {
             }
         } 
         if (req.body.twilio) {
-            const isInserted = true;
-            // const isInserted = insertAnnouncement(req.body.announcement, req.body.announcementDate);
+            const isInserted = insertAnnouncement(req.body.announcement, req.body.announcementDate);
             return sendAnnouncement(context, req.body.announcement)
             .then((val) => {
                 if (isInserted) {
