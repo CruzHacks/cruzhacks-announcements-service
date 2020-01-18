@@ -55,7 +55,8 @@ module.exports = async function(context, req) {
             }
         } 
         if (req.body.twilio) {
-            const isInserted = insertAnnouncement(req.body.announcement);
+            const isInserted = true;
+            // const isInserted = insertAnnouncement(req.body.announcement, req.body.announcementDate);
             return sendAnnouncement(context, req.body.announcement)
             .then((val) => {
                 if (isInserted) {
@@ -81,7 +82,8 @@ module.exports = async function(context, req) {
             });
         }
         else {
-            const isInserted = insertAnnouncement(req.body.announcement);
+            console.log("LINE 84");
+            const isInserted = insertAnnouncement(req.body.announcement, req.body.announcementDate);
             if (isInserted) {
                 return {
                     status: 200,

@@ -14,5 +14,4 @@ curl --request POST \
     "twilio": boolean value
 }'
 ```
-  
 The Twilio boolean indicates whether to send the announcement via Twilio. If set false, then the API will save the announcement to the database.

@@ -12,9 +12,9 @@ const knex = require('knex')({
 
 // const getAllAttendees
 
-const insertAnnouncement = async (announcement) => {
+const insertAnnouncement = async (announcement, announceDate) => {
     try {
-        await knex('announcements').insert({announcedatetime: `${Date(Date.now()).toString()}`, announcement: announcement});
+        await knex('announcements').insert({announcedatetime: announceDate, announcement: announcement});
     }
     catch (ex) {
         console.log(ex);
@@ -36,8 +36,17 @@ const getAllAnnouncement = async () => {
     return allAnnouncement;
 }
 
+const getAllHackers = async () => {
+    const allHackers = knex.select().from('hackers').then(result => {
+        return result;
+    }).catch(err => {
+        return false;
+    })
+    return allHackers;
+}
 
 module.exports = {
     getAllAnnouncement,
     insertAnnouncement,
+    getAllHackers
 }

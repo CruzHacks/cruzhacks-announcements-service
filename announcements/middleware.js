@@ -27,6 +27,7 @@ const authenticatePassword = (functionContext, requestObject) => {
 const parseRequestBody = (functionContext, requestObject ) => {
     if (requestObject.body === undefined 
         || requestObject.body.announcement === undefined
+        || requestObject.body.announcementDate == undefined
         || requestObject.body.password === undefined
         || requestObject.body.twilio === undefined
     ) {
