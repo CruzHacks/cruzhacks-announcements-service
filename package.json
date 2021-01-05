@@ -7,7 +7,7 @@
   },
   "author": "",
   "dependencies": {
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "knex": "^0.20.7",
     "pg": "^7.17.1",
